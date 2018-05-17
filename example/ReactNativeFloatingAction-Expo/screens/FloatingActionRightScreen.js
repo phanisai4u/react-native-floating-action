@@ -12,9 +12,13 @@ class FloatingActionRightScreen extends PureComponent {
   render() {
     const actions = [{
       text: 'Accessibility',
-      icon: require('../images/ic_accessibility_white.png'),
       name: 'bt_accessibility',
-      position: 2
+      position: 2,
+      styles: {
+        text: {
+          fontSize: 20,
+        }
+      }
     }, {
       text: 'Language',
       icon: require('../images/ic_language_white.png'),

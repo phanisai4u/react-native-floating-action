@@ -15,7 +15,6 @@ const DEFAULT_MARGIN = 8;
 class FloatingActionItem extends Component {
   constructor(props) {
     super(props);
-
     this.animation = new Animated.Value(0);
   }
 
@@ -56,7 +55,9 @@ class FloatingActionItem extends Component {
             {
               backgroundColor: textBackground,
               elevation: textElevation || elevation
-            }]
+            },
+            this.props.styles.textContainer
+            ]
           }
         >
           <Text
@@ -64,7 +65,8 @@ class FloatingActionItem extends Component {
               styles.text,
               {
                 color: textColor
-              }
+              },
+              this.props.styles.text
             ]}
           >
             {text}
@@ -88,11 +90,13 @@ class FloatingActionItem extends Component {
     }
 
     return (
-      <View key="button" style={[styles.button, { backgroundColor: color }]}>
-        {
-          React.isValidElement(icon) ? icon : <Image style={iconStyle} source={icon} />
-        }
-      </View>
+      icon
+      ? <View key="button" style={[styles.button, { backgroundColor: color }]}>
+          {
+            React.isValidElement(icon) ? icon : <Image style={iconStyle} source={icon} />
+          }
+        </View>
+      : null
     );
   }
 
@@ -165,7 +169,11 @@ FloatingActionItem.defaultProps = {
   distanceToEdge: 30,
   textElevation: 5,
   textColor: '#444444',
-  textBackground: '#ffffff'
+  textBackground: '#ffffff',
+  styles: {
+    textContainer: {},
+    text: {}
+  }
 };
 
 const styles = StyleSheet.create({
